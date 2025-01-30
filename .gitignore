@@ -1,0 +1,21 @@
+# Python bytecode
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+.env
+
+# Logs
+*.log
+
+# IDE and editor specific files
+.vscode/
+.idea/
+*.sublime-*
+
+# Miscellaneous
+*.tmp
+*.bak
+*.swp
+.DS_Store
