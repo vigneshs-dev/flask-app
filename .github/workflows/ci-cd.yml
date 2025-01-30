@@ -56,5 +56,5 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker tag flask-app ${{ secrets.DOCKER_HUB_USERNAME }}/flask-app:latest
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/flask-app:latest
+          docker tag flask-app vigneshvicky97/flask-app:latest
+          docker push vigneshvicky97/flask-app:latest
