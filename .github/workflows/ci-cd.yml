@@ -30,20 +30,9 @@ jobs:
           pip install pytest
           pytest
 
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
     needs: test
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Build Docker image
-        run: |
-          docker build -t flask-app .
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -54,7 +43,9 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Push Docker image
-        run: |
-          docker tag flask-app vigneshvicky97/flask-app:latest
-          docker push vigneshvicky97/flask-app:latest
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-app:latest
